@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dgk563wb031kc"]
+
+[ext_resource type="Script" uid="uid://bagm02mkaotnb" path="res://black_key.gd" id="1_boxti"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boxti"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2b05q"]
+bg_color = Color(0.2, 0.2, 0.26666668, 1)
+
+[node name="BlackKey" type="Button" unique_id=1594602538]
+offset_right = 36.0
+offset_bottom = 150.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_boxti")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2b05q")
+toggle_mode = true
+script = ExtResource("1_boxti")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

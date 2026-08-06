@@ -1,0 +1,387 @@
+[gd_scene format=3 uid="uid://bo07gccdlw4ag"]
+
+[ext_resource type="Texture2D" uid="uid://byol4cw1hfx18" path="res://bg.png" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://csjb1ogwlhc44" path="res://audio_stream_player.gd" id="1_ig7tw"]
+[ext_resource type="Shader" uid="uid://bpxf1tb7p74ud" path="res://main.gdshader" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bunu76w84jrfn" path="res://white_key.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dgk563wb031kc" path="res://black_key.tscn" id="3_1bvp3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("1_lquwl")
+shader_parameter/shine_color = Vector4(1, 1, 1, 0.5)
+shader_parameter/shine_speed = 0.270000012825
+shader_parameter/shine_width = 0.258000012255
+shader_parameter/shine_tilt = 0.5
+shader_parameter/shine_frequency = 3.0
+shader_parameter/shine_softness = 0.5
+shader_parameter/bg_brightness = 0.5690000270275
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_ig7tw"]
+buffer_length = 0.05
+
+[sub_resource type="LabelSettings" id="LabelSettings_3xd07"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_jq8tk"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_6fhyq"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dwbtc"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h83rl"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j0ogg"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yx7sk"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cdwd0"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t7n2i"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jcwe0"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Control" unique_id=1327213113]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = 278.0
+offset_right = 47.0
+offset_bottom = 278.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=882203463]
+material = SubResource("ShaderMaterial_lquwl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -278.0
+offset_right = 8.0
+offset_bottom = -230.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1bvp3")
+expand_mode = 1
+stretch_mode = 6
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=637586543 node_paths=PackedStringArray("wave_label", "effect_label", "octave_label", "sustain_label", "song_option_button")]
+stream = SubResource("AudioStreamGenerator_ig7tw")
+bus = &"SynthBus"
+script = ExtResource("1_ig7tw")
+wave_label = NodePath("WaveLabel")
+effect_label = NodePath("EffectLabel")
+octave_label = NodePath("OctaveLabel")
+sustain_label = NodePath("SustainLabel")
+song_option_button = NodePath("OptionButton")
+
+[node name="OptionButton" type="OptionButton" parent="AudioStreamPlayer" unique_id=98251956]
+offset_left = 985.0
+offset_top = 56.0
+offset_right = 1025.0
+offset_bottom = 76.0
+
+[node name="EffectLabel" type="Label" parent="AudioStreamPlayer" unique_id=230479268]
+offset_left = 692.0
+offset_top = 2.0
+offset_right = 967.0
+offset_bottom = 42.0
+text = "[混响]：开  [延迟]：开"
+label_settings = SubResource("LabelSettings_3xd07")
+
+[node name="WaveLabel" type="Label" parent="AudioStreamPlayer" unique_id=1574694475]
+offset_left = -1.0
+offset_right = 225.0
+offset_bottom = 23.0
+text = "当前音色：锯齿波 (Sawtooth)"
+label_settings = SubResource("LabelSettings_h2yge")
+
+[node name="OctaveLabel" type="Label" parent="AudioStreamPlayer" unique_id=1073822625]
+offset_top = 41.0
+offset_right = 64.0
+offset_bottom = 80.0
+text = "八度:"
+label_settings = SubResource("LabelSettings_lquwl")
+
+[node name="SustainLabel" type="Label" parent="AudioStreamPlayer" unique_id=1609539917]
+offset_top = 82.0
+offset_right = 120.0
+offset_bottom = 121.0
+text = "延音踏板:"
+label_settings = SubResource("LabelSettings_jq8tk")
+
+[node name="WhiteKey" parent="." unique_id=320436552 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_h2yge")]
+layout_mode = 0
+offset_left = 310.0
+offset_top = -126.0
+offset_right = 370.0
+offset_bottom = 114.0
+audio_player = NodePath("../AudioStreamPlayer")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="WhiteKey" unique_id=462980454]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 216.0
+offset_right = 50.0
+offset_bottom = 239.0
+text = "Z"
+label_settings = SubResource("LabelSettings_6fhyq")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WhiteKey2" parent="." unique_id=1589724208 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_h2yge")]
+layout_mode = 0
+offset_left = 369.0
+offset_top = -126.0
+offset_right = 429.0
+offset_bottom = 114.0
+semitone = 2
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="WhiteKey2" unique_id=1327079269]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 216.0
+offset_right = 50.0
+offset_bottom = 239.0
+text = "X"
+label_settings = SubResource("LabelSettings_dwbtc")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WhiteKey3" parent="." unique_id=263844411 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_h2yge")]
+layout_mode = 0
+offset_left = 429.0
+offset_top = -126.0
+offset_right = 489.0
+offset_bottom = 114.0
+semitone = 4
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="WhiteKey3" unique_id=1949436099]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 216.0
+offset_right = 50.0
+offset_bottom = 239.0
+text = "C"
+label_settings = SubResource("LabelSettings_h83rl")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WhiteKey4" parent="." unique_id=658502082 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_h2yge")]
+layout_mode = 0
+offset_left = 489.0
+offset_top = -126.0
+offset_right = 549.0
+offset_bottom = 114.0
+semitone = 5
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="WhiteKey4" unique_id=1338892763]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 216.0
+offset_right = 51.0
+offset_bottom = 239.0
+text = "V"
+label_settings = SubResource("LabelSettings_j0ogg")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WhiteKey5" parent="." unique_id=978917758 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_h2yge")]
+layout_mode = 0
+offset_left = 669.0
+offset_top = -126.0
+offset_right = 729.0
+offset_bottom = 114.0
+semitone = 11
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="WhiteKey5" unique_id=742068251]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 216.0
+offset_right = 50.0
+offset_bottom = 239.0
+text = "M"
+label_settings = SubResource("LabelSettings_yx7sk")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WhiteKey6" parent="." unique_id=273998412 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_h2yge")]
+layout_mode = 0
+offset_left = 609.0
+offset_top = -126.0
+offset_right = 669.0
+offset_bottom = 114.0
+semitone = 9
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="WhiteKey6" unique_id=263982413]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 216.0
+offset_right = 51.0
+offset_bottom = 239.0
+text = "N"
+label_settings = SubResource("LabelSettings_cdwd0")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WhiteKey7" parent="." unique_id=1110205755 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_h2yge")]
+layout_mode = 0
+offset_left = 549.0
+offset_top = -126.0
+offset_right = 609.0
+offset_bottom = 114.0
+semitone = 7
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="WhiteKey7" unique_id=1379797420]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 216.0
+offset_right = 51.0
+offset_bottom = 239.0
+text = "B"
+label_settings = SubResource("LabelSettings_t7n2i")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="WhiteKey8" parent="." unique_id=1367198866 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_h2yge")]
+layout_mode = 0
+offset_left = 729.0
+offset_top = -126.0
+offset_right = 789.0
+offset_bottom = 114.0
+semitone = 12
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="WhiteKey8" unique_id=907010274]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 216.0
+offset_right = 50.0
+offset_bottom = 239.0
+text = "Q"
+label_settings = SubResource("LabelSettings_jcwe0")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BlackKey" parent="." unique_id=1594602538 node_paths=PackedStringArray("audio_player") instance=ExtResource("3_1bvp3")]
+layout_mode = 0
+offset_left = 352.0
+offset_top = -126.0
+offset_right = 388.0
+offset_bottom = 24.0
+semitone = 1
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="BlackKey" unique_id=1533871692]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 127.0
+offset_right = 38.0
+offset_bottom = 150.0
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BlackKey2" parent="." unique_id=1051559583 node_paths=PackedStringArray("audio_player") instance=ExtResource("3_1bvp3")]
+layout_mode = 0
+offset_left = 711.0
+offset_top = -126.0
+offset_right = 747.0
+offset_bottom = 24.0
+semitone = 10
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="BlackKey2" unique_id=216568381]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 127.0
+offset_right = 38.0
+offset_bottom = 150.0
+text = "J"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BlackKey3" parent="." unique_id=1236589854 node_paths=PackedStringArray("audio_player") instance=ExtResource("3_1bvp3")]
+layout_mode = 0
+offset_left = 651.0
+offset_top = -126.0
+offset_right = 687.0
+offset_bottom = 24.0
+semitone = 8
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="BlackKey3" unique_id=1860882261]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 127.0
+offset_right = 38.0
+offset_bottom = 150.0
+text = "H"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BlackKey4" parent="." unique_id=144191347 node_paths=PackedStringArray("audio_player") instance=ExtResource("3_1bvp3")]
+layout_mode = 0
+offset_left = 591.0
+offset_top = -126.0
+offset_right = 627.0
+offset_bottom = 24.0
+semitone = 6
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="BlackKey4" unique_id=1090662402]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 127.0
+offset_right = 38.0
+offset_bottom = 150.0
+text = "G"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BlackKey5" parent="." unique_id=1048258009 node_paths=PackedStringArray("audio_player") instance=ExtResource("3_1bvp3")]
+layout_mode = 0
+offset_left = 411.0
+offset_top = -126.0
+offset_right = 447.0
+offset_bottom = 24.0
+semitone = 3
+audio_player = NodePath("../AudioStreamPlayer")
+
+[node name="Label" type="Label" parent="BlackKey5" unique_id=294893528]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 127.0
+offset_right = 38.0
+offset_bottom = 150.0
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="item_selected" from="AudioStreamPlayer/OptionButton" to="AudioStreamPlayer" method="_on_option_button_item_selected"]

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bunu76w84jrfn"]
+
+[ext_resource type="Script" uid="uid://vtirpmc5dfsr" path="res://white_key.gd" id="1_48k6o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82buj"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48k6o"]
+bg_color = Color(0.81960785, 0.81960785, 0.81960785, 1)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="WhiteKey" type="Button" unique_id=320436552]
+offset_right = 60.0
+offset_bottom = 240.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_82buj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_48k6o")
+toggle_mode = true
+script = ExtResource("1_48k6o")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
